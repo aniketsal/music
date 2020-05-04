@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-  
+        scale=1">
+        <script src="https://kit.fontawesome.com/90aa2d7a92.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='sa.css') }}">
+    </head>
+    <body>
+       <form class="example" method="post" action="/search" style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Search by song name to see the results" name="book">
+            <button type="submit" value="Search"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+        
+    </body>
+</html>

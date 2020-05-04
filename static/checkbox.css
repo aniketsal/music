@@ -1,0 +1,39 @@
+#ch{
+
+
+
+
+    width:350px;
+    /*display: inline-block;*/
+
+
+        margin-top: 75px;
+        margin-left : 40%;
+
+
+}
+html{
+  background-color: #435165;
+
+}
+.abc{
+    color: white;
+    font-size: 30px;
+}
+
+.in{
+  width: 25px;
+  height: 25px;
+}
+.one{
+  width: 100px;
+  height: 30px;
+  margin-left: 110px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+h1{
+  color: white;
+  text-align: center;
+  margin-top: 200px;
+}

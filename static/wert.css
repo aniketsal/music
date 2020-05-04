@@ -1,0 +1,102 @@
+body{
+  text-align: center;
+}
+html{
+  background-color: #435165;
+}
+.wrap {
+  align-items: center;
+  justify-content: center;
+
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 435px;
+  background: #f1f1f1;
+  margin-left: 50px;
+  background-color: transparent;
+
+}
+form.example button {
+  float: left;
+  width: 65px;
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  height: 42px;
+}
+form.example button:hover {
+  background: #0b7dda;
+}
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.button {
+  width: 500px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 50%;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #CC9999;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  
+
+  }
+
+.button:hover {
+  background-color: #A52A2A;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#le{
+  margin-right:80%
+  
+}
+
+#le1{
+  margin-right:80%
+
+}
+
+#le3{
+  margin-left:90%
+
+
+}
+#right{
+  border-radius: 15px;
+  width:80px;
+  background: #CC9999;
+  transition: all 0.3s ease 0s;
+  height: 45px;
+
+}
+
+#left{
+  width:75px;
+  background: #CC9999;
+  transition: all 0.3s ease 0s;
+  height: 45px;
+  cursor: pointer;
+}

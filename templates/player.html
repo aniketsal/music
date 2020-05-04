@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='lkj.css') }}">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://kit.fontawesome.com/90aa2d7a92.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var song = new Audio;
+      var muted = false;
+      var vol = 1;
+      song.type = 'audio/mpeg';
+      song.src ='{{path}}';
+      song.play()
+      function skip(time) {
+          if (time == 'back') {
+              song.currentTime = (song.currentTime - 5);
+          } else if (time == 'fwd') {
+              song.currentTime = (song.currentTime + 5);
+          }
+      }
+      function playpause() {
+          if (!song.paused) {
+              song.pause();
+          } else {
+              song.play();
+          }
+      }
+      function stop() {
+          song.pause();
+          song.currentTime = 0;
+          document.getElementById('seek').value = 0;
+      }
+      function setPos(pos) {
+          song.currentTime = pos;
+      }
+      function mute() {
+          if (muted) {
+              song.volume = vol;
+              muted = false;
+              document.getElementById('mute').innerHTML = '<i class="fa fa-volume-up"></i>';
+          } else {
+              song.volume = 0;
+              muted = true;
+              document.getElementById('mute').innerHTML = '<i class="fa fa-volume-off"></i>';
+          }
+      }
+      function setVolume(volume) {
+          song.volume = volume;
+          vol = volume;
+      }
+      song.addEventListener('timeupdate',function() {
+          curtime = parseInt(song.currentTime,10);
+          document.getElementById('seek').max = song.duration;
+          document.getElementById('seek').value = curtime;
+      })
+     </script>
+     <script>
+  function preventBack(){window.history.forward();}
+  setTimeout("preventBack()", 0);
+  window.onunload=function(){null};
+</script>
+     <script>
+      $(document).ready(function(){
+
+  /* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+
+
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+
+    // JUST RESPONSE (Not needed)
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    document.getElementById("rating").value=ratingValue;
+
+
+
+  });
+
+
+});
+
+     </script>
+</head>
+<body>
+  <div class="container">
+      <div class="glow">
+        <div class="text-container">
+          <span class="text">{{name}}</span>
+          <br>
+          <span class="text">{{artist}}</span>
+          <br>
+          <div class="playback_controls">
+            <button onclick="skip('back')"><i class="fa fa-fast-backward"></i></button>
+            <button onclick="playpause()"><i class="fas fa-play"></i><i class="fa fa-pause"></i></button>
+            <button onclick="stop()"><i class="fa fa-stop"></i></button>
+            <button onclick="skip('fwd')"><i class="fa fa-fast-forward"></i></button>
+
+
+          </div>
+          <br>
+          <div id="seekbar">
+             <input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
+          </div>
+          <br>
+          <div class="volume_controls">
+               <button id="mute" onclick="mute()"><i class="fa fa-volume-up"></i></button>
+               <input type="range" id="volume" oninput="setVolume(this.value)" min="0" max="1" step="0.01" value="1">
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+     <section class='rating-widget'>
+
+  <form  method="POST" action="/now"><!-- Rating Stars Box -->
+  <div class='rating-stars text-center'>
+    <ul id='stars'>
+      <li class='star'  title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+    <input type="submit" id='two' name="Rate" value="Rate">
+    </ul>
+
+    <input type="hidden" id="rating" name="rating" value="">
+    <input type="hidden" id="songid" name="songid" value="{{songid}}">
+    <input type="hidden" id="id" name="id" value="{{id}}">
+    <input type="hidden" id="artist" name="artist" value="{{artist}}">
+    <input type="hidden" id="songname" name="songname" value="{{name}}">
+    <input type="hidden" id="path" name="path" value="{{path}}">
+  </div>
+
+  </form>
+</section>
+
+{% if j %}
+<h1 style="text-align:center">{{po}}</h1>
+{% for i in j %}
+    <form  method="POST" action="/player">
+      <div class="wrap">
+        <button id='but'>{{i[1]}}</button>
+      </div>
+      <input type="hidden" name="id" value="{{id}}">
+      <input type="hidden" name="songid" value="{{i[0]}}">
+      <br></br>
+
+    </form>
+    {% endfor %}
+{% endif %}
+
+
+
+</body>
+</html>

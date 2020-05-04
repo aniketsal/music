@@ -1,0 +1,60 @@
+<html>
+<head>
+	<script src="https://kit.fontawesome.com/90aa2d7a92.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='wert.css') }}">
+
+</head>
+<body>
+	<form class="example" method="post" action="/search" style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Search by song name or movie name to see the results" name="book">
+            <button type="submit" value="Search"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <input type="hidden" name="id" value="{{id}}">
+    </form>
+    {% if f %}
+    <h1>{{f}}</h1>
+    {% endif %}
+    <form id="le3" method="POST" action="/">
+			<button id="left">Log Out</button>
+			
+			
+	</form>
+
+
+
+	<form id="le" method="POST" action="/genre">
+			<button id="right" name="g" value="1">All</button>
+			<button id="right" name="g" value="2">Sad</button>
+			<button id="right" name="g" value="3">Romantic</button>
+			<input type="hidden" name="id" value="{{id}}">
+			
+		</form>
+		<form id="le1" method="POST" action="/genre">
+			<button id="right" name="g" value="4">Dance</button>
+			<button id="right" name="g" value="5">Devotional</button>
+			<button id="right" name="g" value="6">Motivational</button>
+			<input type="hidden" name="id" value="{{id}}">
+			
+		</form>
+		{% if li %}
+		<h1>{{po}}</h1>
+		{% if f1 %}
+		<h1>{{f1}}</h1>
+		{% endif %}
+
+
+	 	{% for i in li %}
+		<form  method="POST" action="/player">
+			<div class="wrap">
+				<button class="button"><h1 style="font-weight:normal">{{i[1]}}</h1></button>
+			</div>
+			<input type="hidden" name="id" value="{{id}}">
+			<input type="hidden" name="songid" value="{{i[0]}}">
+			
+		</form>
+		{% endfor %}
+		{% endif %}
+		
+
+       
+</body>
+</html>

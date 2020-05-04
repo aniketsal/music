@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/checkbox.css">
+    <title>Document</title>
+    <script type="text/javascript"> 
+        window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+    </script> 
+</head>
+<body>
+  <h1>What genre are you intersted in?</h1>
+    <div id='ch'>
+        <form action="/check" method="POST" autocomplete="off">
+<input type="checkbox" class='in' name="mycheckbox" value="Bollywood Dance"><label> <span class="abc">Bollywood Dance</span></label><br/>
+<input type="checkbox" class='in' name="mycheckbox" value="Bollywood Romantic"><label><span class="abc">Bollywood Romantic</span></label><br/>
+<input type="checkbox" class='in' name="mycheckbox" value="Bollywood Devotional"><label><span class="abc">Bollywood Devotional</span></label><br/>
+<input type="checkbox" class='in' name="mycheckbox" value="Bollywood Motivational"><label><span class="abc">Bollywood Motivational</span></label><br/>
+<input type="checkbox" class='in' name="mycheckbox" value="Bollywood Sad"><label><span class="abc">Bollywood Sad</span></label><br/>
+<input type="hidden" name="id" value="{{id}}"/>
+<input class='one' type="submit" value="Submit">
+</form>
+    </div>
+</body>
+</html>
